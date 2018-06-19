@@ -18,14 +18,21 @@ app.get('/', function (req, res) {
       console.log(response.url);
       console.log(response.headers);
 
-      return response.buffer();
+      if(response.ok) {
+        return response.buffer();
+      } else {
+        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+      }
     }).then(image => {
         res.header('content-type', 'image/png');
         res.header('content-disposition', 'attachment; filename=filename.png');
 
         res.write(image, 'binary');
         res.end(null, 'binary');
-    })
+    }).catch(error => {
+      console.log('fetch failed: ', error.message);
+      res.status(502).send(`fetch failed`);
+    });
 })
 
 const port = 3001;

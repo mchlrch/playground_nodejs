@@ -1,0 +1,13 @@
+{
+  "name": "puppetron_content_disposition",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "node-fetch": "^2.1.2"
+  }
+}

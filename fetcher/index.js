@@ -2,17 +2,19 @@
 
 const fetch = require('node-fetch');
 
-const fetchUrl = 'http://stat.integ.stadt-zuerich.ch/tags/';
-// const fetchUrl = 'http://stat.integ.stadt-zuerich.ch/static/touch-icon.png';
-
-function log(url, status, duration, comment) {
+function log({url, status=-1, duration, age='', xVarnish='', comment=''}) {
     var ts = new Date().toLocaleString();
-    console.log(`${ts};${url};${status};${duration};${comment != undefined ? comment : ''}`);
+    console.log(`${ts};${url};${status};${duration};${age};${xVarnish};${comment}`);
 }
 
 function elapsedTime(startMilllis) {
     return Date.now() - startMilllis;
 }
+
+// -------------------------
+
+const args = process.argv.slice(2);
+const fetchUrl = args[0];
 
 const startMilllis = Date.now();
 fetch(fetchUrl, {
@@ -20,7 +22,16 @@ fetch(fetchUrl, {
     headers: { 'Accept': 'application/json'}
   })
   .then(response => {
-    log(fetchUrl, response.status, elapsedTime(startMilllis));
+    const age = response.headers.get('age');
+    const xVarnish = response.headers.get('x-varnish');
+
+    log({
+      url: fetchUrl,
+      status: response.status,
+      duration: elapsedTime(startMilllis),
+      age: age != null ? age : '',
+      xVarnish : xVarnish != null ? xVarnish : ''
+    });
 
     if(response.ok) {
       return response.text();
@@ -28,5 +39,9 @@ fetch(fetchUrl, {
   }).then(json => {
     // console.log(json);
   }).catch(error => {
-    log(fetchUrl, -1, elapsedTime(startMilllis), `"fetch failed: ${error.message}"`);
+    log({
+      url: fetchUrl,
+      duration: elapsedTime(startMilllis),
+      comment: `"fetch failed: ${error.message}"`
+    });
   });

@@ -6,7 +6,7 @@ const fetchUrl = 'http://stat.integ.stadt-zuerich.ch/tags/';
 // const fetchUrl = 'http://stat.integ.stadt-zuerich.ch/static/touch-icon.png';
 
 function log(url, status, duration, comment) {
-    var ts = new Date().toISOString();
+    var ts = new Date().toLocaleString();
     console.log(`${ts};${url};${status};${duration};${comment != undefined ? comment : ''}`);
 }
 

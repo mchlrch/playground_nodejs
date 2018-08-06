@@ -1,0 +1,15 @@
+{
+  "name": "http_simstub",
+  "version": "0.0.1",
+  "description": "simulates timeouts and errors",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  }
+}

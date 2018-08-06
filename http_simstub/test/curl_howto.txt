@@ -1,0 +1,5 @@
+$ curl -i -H "accept:application/json"  http://localhost:8080/dataset
+
+$ curl -i -H "accept:application/ld+json" --data-urlencode query@sometriples.rq http://localhost:8080/query
+
+

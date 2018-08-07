@@ -1,0 +1,14 @@
+{
+  "name": "fetcher",
+  "version": "0.0.1",
+  "description": "fetch and log",
+  "main": "index.js",
+  "scripts": {
+    "fetch-datasets": "node ./fetchDatasets"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  }
+}

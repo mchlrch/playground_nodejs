@@ -1,0 +1,14 @@
+{
+  "name": "usingPromises",
+  "version": "0.0.1",
+  "description": "playing around with promises",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  }
+}
